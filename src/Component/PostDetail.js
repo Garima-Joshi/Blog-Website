@@ -10,7 +10,12 @@ function PostDetail() {
 
   useEffect(() => {
     //firebase get data
-   
+    const unsubscribe = onSnapshot(doc(db, 'posts', postId), (doc) => {
+      setPost(doc.data());
+    });
+    return () => {
+      unsubscribe();
+    };
   }, []);
   return (
     <div className="post-detail">

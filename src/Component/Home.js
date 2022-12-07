@@ -11,7 +11,30 @@ function Home() {
 
   //firebase get data
   useEffect(() => {
-    
+    /******READS DATA (WITHOUT REALTIME UPDATE FUNCTIONALITY) **************/
+    //   getDocs(collection(db,'posts')).then((response)=>{
+    //     const post = response.docs.map((doc) => {
+    //     return {
+    //       id: doc.id,
+    //       ...doc.data(),
+    //     };
+    //   });
+    //   setPosts(post);})
+
+    /*********READS DATA( WITH REALTIME UPDATE FUNCTIONALITY)*/
+    const unsubscribe = onSnapshot(collection(db, 'posts'), (snapshot) => {
+      const post = snapshot.docs.map((doc) => {
+        return {
+          id: doc.id,
+          ...doc.data(),
+        };
+      });
+      setPosts(post);
+    });
+
+    return () => {
+      unsubscribe();
+    };
   }, []);
 
   return (
