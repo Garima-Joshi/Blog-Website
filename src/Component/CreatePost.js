@@ -1,4 +1,5 @@
 import { useFormInput } from '../hooks';
+//Firebase imports
 import { collection, addDoc } from 'firebase/firestore';
 import { db } from '../firebase';
 function CreatePost() {
@@ -13,7 +14,18 @@ function CreatePost() {
     console.log('content', content);
     console.log('author', author);
     //firebase db
+    try {
+      const docRef = await addDoc(collection(db, 'posts'), {
+        title: title.value,
+        content: content.value,
+        author: author.value,
+        createdAt: new Date(),
+      });
 
+      console.log('Document written with ID: ', docRef.id);
+    } catch (e) {
+      console.error('Error adding document: ', e);
+    }
     for (let element of document.getElementsByTagName('input'))
       element.value = '';
     for (let element of document.getElementsByTagName('textarea'))

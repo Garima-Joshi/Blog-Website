@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+//Firebase imports
 import { doc, onSnapshot } from 'firebase/firestore';
 import { db } from '../firebase';
 
@@ -9,6 +10,7 @@ function PostDetail() {
 
   useEffect(() => {
     //firebase get data
+   
   }, []);
   return (
     <div className="post-detail">

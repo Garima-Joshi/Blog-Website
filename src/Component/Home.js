@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+
+//Firebase imports
 import { collection, getDocs, onSnapshot } from 'firebase/firestore';
 import { db } from '../firebase';
 import CreatePost from './CreatePost';
@@ -8,7 +10,9 @@ function Home() {
   const [posts, setPosts] = useState([]);
 
   //firebase get data
-  useEffect(() => {}, []);
+  useEffect(() => {
+    
+  }, []);
 
   return (
     <div className="home">
